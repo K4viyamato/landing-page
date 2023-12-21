@@ -13,6 +13,11 @@ const Navbar = () => {
 
     window.addEventListener('resize', handleResize);
 
+    return () => {
+      window.removeEventListener('resize', handleResize);
+
+    }
+
   }, []); 
 
   return (
@@ -22,11 +27,15 @@ const Navbar = () => {
           <NavLink to='/'><img src={logo} alt='logo' /></NavLink>
         </div>
 
+        
         <div className='self-center flex flex-row gap-5 text-white'>
+        {/* // Checking window width for responsiveness */}
           {windowWidth < 768 ? (
+            // Render menu icon if window width is less than 768px
             <IoMdMenu className='text-4xl'/>
           ) : (
             <>
+            {/* // Render navigation links for larger screens */}
               <NavLink to='/service'>SERVICES</NavLink>
               <NavLink to='/about'>ABOUT US</NavLink>
               <NavLink to='/contact'>CONTACT US</NavLink>
